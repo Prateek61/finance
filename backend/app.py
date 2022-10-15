@@ -2,8 +2,8 @@ from flask import Flask
 from os import path
 from flask_cors import CORS
 
-from hola.models import User, db
-from hola.auth import auth, token_required
+from modules.models import  db
+from modules.auth import auth
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "notsosecretafterall"
