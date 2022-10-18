@@ -1,25 +1,25 @@
 <template>
-  <form @submit.prevent="handlesubmit">
-    <h3>Sign Up</h3>
+  <form class="text-center" @submit.prevent="handleSubmit">
+    <h3>Register</h3>
 
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form-control" v-model="Username" placeholder="Username"/>
+    <div class="mb-3">
+      <input class="form-control mx-auto w-auto" placeholder="Username" type="text" v-model="Username">
+    </div>
+    <div class="mb-3">
+      <input class="form-control mx-auto w-auto" type="password" placeholder="Password" v-model="Password">
     </div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" v-model="Password" placeholder="Password"/>
+    <div class="mb-3">
+      <input class="form-control mx-auto w-auto" type="password" placeholder="Confirm Password" v-model="Password_Confirmation">
     </div>
 
-    <div class="form-group">
-      <label>Confirm Password</label>
-      <input type="password" class="form-control" v-model="Password_Confirmation" placeholder="Confirm Password"/>
-    </div>
-
-    <button class="btn btn-primary btn-block">Register</button>
+    <button class="btn btn-primary mx-auto w-auto">Register</button>
   </form>
 </template>
+
+<style>
+
+</style>
 
 <script>
 import axios from 'axios'
@@ -34,14 +34,14 @@ export default {
     }
   },
   methods: {
-    async handlesubmit () {
+    async handleSubmit () {
       const data = {
         username: this.Username,
         password: this.Password,
         password_Confirmation: this.Password_Confirmation
       }
       console.log(data)
-      const response = await axios.post('/register', data)
+      const response = await axios.post('/auth/register', data)
       console.log(response)
     }
   }

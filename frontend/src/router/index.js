@@ -4,12 +4,12 @@ import AuthView from '@/views/AuthView'
 
 const routes = [
   {
-    path: '/',
+    path: '/auth',
     name: 'AuthView',
     component: AuthView
   },
   {
-    path: '/home',
+    path: '/',
     name: 'HomeView',
     component: HomeView
   },

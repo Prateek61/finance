@@ -74,8 +74,8 @@ def login():
         return error
 
     if check_password_hash(user.password, auth.password):
-        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, secret_key, algorithm='HS256')
+        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)}, secret_key, algorithm='HS256')
 
-        return jsonify({'token': token})
+        return jsonify({'token': token, 'user': {'username': user.username, 'public_id': user.public_id}})
     
     return error

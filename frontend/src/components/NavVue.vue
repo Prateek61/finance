@@ -7,7 +7,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav ms-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+                        <li class="nav-item"><a href="#">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Log In</a></li>
                     </ul>
             </div>
