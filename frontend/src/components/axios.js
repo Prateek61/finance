@@ -11,6 +11,7 @@ axios.interceptors.response.use((response) => {
   if (error.response.status === 401) {
     store.dispatch('logout')
     router.push('/auth')
+    return Promise.reject(error)
   }
   return error
 })
