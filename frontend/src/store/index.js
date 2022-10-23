@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
@@ -16,6 +17,12 @@ export default createStore({
     logout: (state) => {
       state.user = null
       localStorage.removeItem('token')
+      axios.defaults.headers.common['x-access-token'] = null
+    },
+    login: (state, token) => {
+      console.log(token)
+      axios.defaults.headers.common['x-access-token'] = token
+      localStorage.setItem('token', token)
     }
   },
   actions: {
@@ -24,6 +31,9 @@ export default createStore({
     },
     logout: (context) => {
       context.commit('logout')
+    },
+    login: (context, token) => {
+      context.commit('login', token)
     }
   },
   modules: {

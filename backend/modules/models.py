@@ -10,7 +10,7 @@ class User(db.Model):
 
 class History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(50), unique=True, nullable=False)
+    category = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

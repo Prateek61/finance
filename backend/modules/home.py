@@ -24,6 +24,8 @@ categories = ["food", "transport", "rent", "health"]
 @token_required
 def add_to_history(current_user):
     data = request.get_json()
+    if (not data or not data['amount'] or not data['category'] or not data['description']):
+        return jsonify({'status': 'fail', 'message': 'invalid form'})
 
     try:
         amount = int(data['amount'])
@@ -50,7 +52,7 @@ def add_to_history(current_user):
 @home.route('/getcategories')
 @token_required
 def get_catrgory(current_user):
-    return jsonify(categories)
+    return jsonify({'categories': categories})
 
 @home.route('/getuser', methods=['GET'])
 @token_required

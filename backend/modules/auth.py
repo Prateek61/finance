@@ -30,6 +30,8 @@ def token_required(f):
             return jsonify({'message': 'Token is invalid!'}), 401
         else:
             current_user = User.query.filter_by(public_id=data['public_id']).first()
+            if not current_user:
+                return jsonify({'message': 'Token is invalid'}), 401
         return f(current_user, *args, **kwargs)
     
     return decorated

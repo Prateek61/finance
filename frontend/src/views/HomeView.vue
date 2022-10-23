@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-if="user">
-      <button class="btn btn-primary" @click="logout">Logout</button>
       <h1>{{user.username}}  {{user.public_id}}</h1>
     </div>
     <div v-else>
@@ -20,10 +19,6 @@ export default {
     }
   },
   methods: {
-    logout () {
-      this.$store.dispatch('logout')
-      this.$router.push('/auth')
-    }
   },
   computed: {
     ...mapGetters(['user'])

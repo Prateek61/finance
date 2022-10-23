@@ -49,9 +49,8 @@ export default {
         return
       }
 
-      console.log(response.data.user)
-      localStorage.setItem('token', response.data.token)
       this.$store.dispatch('user', response.data.user)
+      this.$store.dispatch('login', response.data.token)
       this.$router.push('/')
     }
   },
