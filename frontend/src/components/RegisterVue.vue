@@ -1,21 +1,15 @@
 <template>
-  <form class="text-center" @submit.prevent="handleSubmit">
+  <v-form>
     <h3>Register</h3>
     <ErrorVue :error="errorMessage" v-if="errorMessage" />
-    <div class="mb-3">
-      <input class="form-control mx-auto w-auto" placeholder="Username" type="text" v-model="username">
-    </div>
-    <div class="mb-3">
-      <input class="form-control mx-auto w-auto" type="password" placeholder="Password" v-model="password">
-    </div>
 
-    <div class="mb-3">
-      <input class="form-control mx-auto w-auto" type="password" placeholder="Confirm Password" v-model="passwordConfirmation">
-    </div>
+    <v-text-field v-model="username" label="username"></v-text-field>
+    <v-text-field :type="show1 ? 'text' : 'password'" v-model="password" label="password"></v-text-field>
+    <v-text-field :type="show1 ? 'text' : 'password'" v-model="passwordConfirmation" label="Confirm Password"></v-text-field>
+    <v-btn @click="handleSubmit">Register</v-btn>
 
-    <button class="btn btn-primary mx-auto w-auto">Register</button>
-    <div v-if="registered">User registered, you can login</div>
-  </form>
+    <h4 v-if="registered">Registered, you can now log in</h4>
+  </v-form>
 </template>
 
 <style>

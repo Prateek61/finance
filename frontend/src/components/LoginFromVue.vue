@@ -1,17 +1,11 @@
 <template>
-  <form class="text-center" @submit.prevent="handleSubmit">
+  <v-form>
     <h3>Login</h3>
     <ErrorVue :error="errorMessage" v-if="errorMessage" />
-    <div class="mb-3">
-      <input class="form-control mx-auto w-auto" placeholder="Username" type="text" v-model="username" />
-    </div>
-
-    <div class="mb-3">
-      <input class="form-control mx-auto w-auto" placeholder="Password" type="password" v-model="password" />
-    </div>
-
-    <button class="btn btn-primary">Login</button>
-  </form>
+    <v-text-field v-model="username" label="Username"></v-text-field>
+    <v-text-field :type="show1 ? 'text' : 'password'" v-model="password" label="Password"></v-text-field>
+    <v-btn @click="handleSubmit">Log In</v-btn>
+  </v-form>
 </template>
 
 <script>

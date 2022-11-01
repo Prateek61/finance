@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <form @submit.prevent="handleSubmit">
       <div class="mb-3">
         <select class="form-select mx-auto w-auto" name="category" v-model="selectedCategory">
@@ -34,10 +34,13 @@ export default {
   data () {
     return {
       categories: null,
-      selectedCategory: 'Category',
+      selectedCategory: null,
       amount: null,
       description: null,
-      errorMessage: null
+      errorMessage: null,
+      rules: {
+        posInteger: [v => (!isNaN(parseFloat(v)) && v >= 0) || 'Invalid numeric value']
+      }
     }
   },
   methods: {
@@ -49,7 +52,7 @@ export default {
       }
       console.log(data)
       if (!this.isValid(data)) {
-        this.errorMessage = 'Please complete the form properly'
+        this.errorMessage = 'Please complete the form properly :)'
         return
       }
 
