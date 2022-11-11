@@ -1,0 +1,6 @@
+{
+    "food": {"icon": "food-fork-drink", "color": "#388E3C"},
+    "transport": {"icon": "train-car", "color": "#039BE5"},
+    "rent": {"icon": "home-city", "color": "#FF9800"},
+    "health": {"icon": "hospital-box", "color": "#00BFA5"}
+}

@@ -1,7 +1,7 @@
 <template>
-  <v-app v-cloak class="grey lighten-4">
+  <v-app class="bg-grey-lighten-4">
     <nav-vue v-if="notAuth"/>
-    <v-main class="text-center" v-bind:class="{'py-5': user}">
+    <v-main v-bind:class="{'py-5': user}">
       <router-view/>
     </v-main>
   </v-app>
@@ -21,7 +21,6 @@ export default {
   },
   async created () {
     const response = await axios.get('/getuser')
-    console.log(response.data.user)
     this.$store.dispatch('user', response.data.user)
   },
   computed: {

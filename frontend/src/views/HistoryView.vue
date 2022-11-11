@@ -1,33 +1,26 @@
 <template>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-start">Category</th>
-          <th class="text-end">Amount</th>
-          <th class="text-end">Description</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="(item, index) in history" :key="index">
-          <th class="text-start">{{ item.category }}</th>
-          <th class="text-end">{{ item.amount }}</th>
-          <th class="text-end">{{ item.description }}</th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <v-content>
+    <v-container class="my-5">
+      <h4>History</h4>
+      <HistoryRowVue v-for="(item, index) in history" :key="index" :data="item" :style="icon[item.category]"/>
+    </v-container>
+  </v-content>
 </template>
 
 <script>
 import axios from 'axios'
+import HistoryRowVue from '@/components/HistoryRowVue.vue'
+import icons from '@/assets/icons.json'
 
 export default {
   name: 'HistoryView',
+  components: {
+    HistoryRowVue
+  },
   data () {
     return {
-      history: null
+      history: null,
+      icon: icons
     }
   },
   async created () {
