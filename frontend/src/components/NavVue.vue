@@ -2,7 +2,6 @@
   <nav>
     <v-toolbar flat app>
       <v-btn selected to="/">Home</v-btn>
-      <v-btn to="/add">Add</v-btn>
       <v-btn to="/history">History</v-btn>
 
       <v-spacer />

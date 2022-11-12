@@ -1,10 +1,8 @@
 <template>
-  <v-content>
-    <v-container class="my-5">
-      <h4>History</h4>
-      <HistoryRowVue v-for="(item, index) in history" :key="index" :data="item" :style="icon[item.category]"/>
-    </v-container>
-  </v-content>
+  <v-container class="my-5">
+    <h4>History</h4>
+    <HistoryRowVue v-for="(item, index) in history" :key="index" :data="item" :style="icon[item.category]" />
+  </v-container>
 </template>
 
 <script>
