@@ -20,6 +20,11 @@ import AddVue from '@/components/AddVue.vue'
 
 export default {
   name: 'NavVue',
+  data () {
+    return {
+
+    }
+  },
   components: {
     AddVue
   },

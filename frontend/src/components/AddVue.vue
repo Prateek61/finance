@@ -16,7 +16,8 @@
             <v-select :items="categories" label="Category" :rules="rules.category" v-model="selected"></v-select>
             <v-text-field label="Amount" :rules="rules.amount" v-model.number="amount"></v-text-field>
             <v-text-field label="Description" :rules="rules.description" v-model="description"></v-text-field>
-            <v-btn color="primary" @click="handleSubmit">Add</v-btn>
+            <AlertVue :type="alert.type" :message="alert.message" v-if="alert.message" />
+            <v-btn class="align-center" color="primary" @click="handleSubmit">Add</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -26,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import AlertVue from '@/components/AlertVue.vue'
 
 export default {
   name: 'AddVue',
@@ -36,7 +38,10 @@ export default {
       selected: null,
       amount: null,
       description: '',
-      errorMessage: null,
+      alert: {
+        type: null,
+        message: null
+      },
       rules: {
         category: [
           v => !!v || 'Must select a category',
@@ -63,13 +68,33 @@ export default {
         }
 
         const response = await axios.post('/add', data)
-        this.errorMessage = response.data.message
+        if (response.data.status === 'success') {
+          this.alert = { type: 'success', message: response.data.message }
+        } else if (response.data.status === 'fail') {
+          this.alert = { type: 'error', message: response.data.message }
+        }
       }
     }
   },
   async created () {
     const response = await axios.get('/getcategories')
     this.categories = response.data.categories
+  },
+  components: {
+    AlertVue
   }
 }
 </script>
+
+<style>
+
+.error{
+  text-align: center;
+  color: #B00020;
+}
+.success{
+  text-align: center;
+  color: #4CAF50;
+}
+
+</style>
