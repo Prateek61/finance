@@ -14,7 +14,7 @@
 
       <v-col  cols="6" sm="4" md="3">
         <div class="text-caption text-grey">Date Added</div>
-        <div>2022/10/11</div>
+        <div>{{ data.datetime }}</div>
       </v-col>
 
       <v-col  cols="12" sm=6 md="4">

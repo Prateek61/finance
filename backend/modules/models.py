@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -13,4 +14,12 @@ class History(db.Model):
     category = db.Column(db.String(50), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text)
+    date_time = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, category, amount, description, user_id):
+        self.category = category
+        self.amount = amount
+        self.description = description
+        self.user_id = user_id
+        self.date_time = datetime.now().isoformat()

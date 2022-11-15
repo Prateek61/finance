@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div v-if="user">
-      <h1>{{user.username}}  {{user.public_id}}</h1>
-    </div>
-    <div v-else>
-      <h1>Not logged in</h1>
-    </div>
-  </div>
+  <v-main>
+    <v-container v-if="user">
+      <p>Hello, welcome {{user.username}}</p>
+      <BarGraphVue />
+    </v-container>
+  </v-main>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import BarGraphVue from '@/components/BarGraphVue.vue'
+
 export default {
   name: 'HomeView',
   data () {
@@ -21,6 +21,9 @@ export default {
   },
   computed: {
     ...mapGetters(['user'])
+  },
+  components: {
+    BarGraphVue
   }
 }
 </script>

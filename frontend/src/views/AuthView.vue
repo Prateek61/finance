@@ -1,7 +1,7 @@
 <template>
   <AuthNavVueVue :clickedRegister="clickedRegister" :clickedLogin="clickedLogin" />
 
-  <v-content>
+  <v-main>
     <v-container class="my-5 py-5">
       <v-row no-gutters justify="center">
         <v-col cols="10" xs="8" sm="6" lg="4">
@@ -10,7 +10,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
