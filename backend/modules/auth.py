@@ -41,7 +41,7 @@ def token_required(f):
 def users():
     users = User.query.all()
 
-    output = []
+    output = list()
     for user in users:
         user_data = {}
         user_data['public_id'] = user.public_id

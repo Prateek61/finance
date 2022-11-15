@@ -1,7 +1,6 @@
 <template>
   <v-main>
     <v-container v-if="user">
-      <p>Hello, welcome {{user.username}}</p>
       <BarGraphVue />
     </v-container>
   </v-main>

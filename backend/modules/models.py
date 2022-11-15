@@ -17,7 +17,7 @@ class History(db.Model):
     date_time = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self, category, amount, description, user_id):
+    def __init__(self, category: str, amount: int, description: str, user_id: int):
         self.category = category
         self.amount = amount
         self.description = description

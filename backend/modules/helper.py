@@ -1,4 +1,5 @@
 from datetime import datetime
+from calendar import day_name
 from .models import History
 
 def history_to_dict(history: History) -> dict:
@@ -9,3 +10,6 @@ def history_to_dict(history: History) -> dict:
     result['description'] = history.description
     result['datetime'] = datetime.fromisoformat(history.date_time).strftime('%Y/%m/%d %H:%M:%S')
     return result
+
+def get_week(time: str) -> str:
+    return day_name[datetime.fromisoformat(time).weekday()]
