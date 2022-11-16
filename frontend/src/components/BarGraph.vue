@@ -15,16 +15,23 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'BarChart',
-  components: { Bar },
+
+  components: {
+    Bar
+  },
+
   data () {
     return {
       loaded: false,
+
       chartData: {
         labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+
         datasets: [
           {
             label: 'Expenditure',
             data: [],
+
             backgroundColor: [
               '#F44336',
               '#E91E63',
@@ -37,13 +44,16 @@ export default {
           }
         ]
       },
+
       chartOptions: {
         responsive: true,
+
         plugins: {
           title: {
             display: true,
             text: 'Expenditure in every day of week'
           },
+
           legend: {
             display: false
           }
@@ -51,6 +61,7 @@ export default {
       }
     }
   },
+
   async mounted () {
     const response = await axios.get('/bargraph')
     const list = []

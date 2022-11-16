@@ -3,37 +3,46 @@
     <h3>Login</h3>
     <v-text-field v-model="username" :rules="rules.usernameRequired" label="Username"></v-text-field>
     <v-text-field :type="show1 ? 'text' : 'password'" :rules="rules.passwordRequired" v-model="password" label="Password"></v-text-field>
-    <AlertVue :type="alert.type" :message="alert.message" v-if="alert.message" />
-    <v-btn class="my-2" @click="handleSubmit">Log In</v-btn>
+    <AlertText :type="alert.type" :message="alert.message" v-if="alert.message" />
+    <v-btn class="my-2" @click="loginFormSubmit">Log In</v-btn>
   </v-form>
 </template>
 
 <script>
 import axios from 'axios'
-import AlertVue from './AlertVue.vue'
+import AlertText from './AlertText.vue'
 
 export default {
   name: 'LoginFormVue',
+
+  components: {
+    AlertText
+  },
+
   data () {
     return {
       username: '',
       password: '',
+
       alert: {
         type: null,
         message: null
       },
+
       rules: {
         usernameRequired: [
           v => !!v || 'Username Required'
         ],
+
         passwordRequired: [
           v => !!v || 'Password Required'
         ]
       }
     }
   },
+
   methods: {
-    async handleSubmit () {
+    async loginFormSubmit () {
       const { valid } = await this.$refs.form.validate()
 
       if (valid) {
@@ -56,9 +65,6 @@ export default {
         }
       }
     }
-  },
-  components: {
-    AlertVue
   }
 }
 </script>

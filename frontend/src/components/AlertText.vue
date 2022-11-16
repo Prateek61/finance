@@ -5,10 +5,23 @@
 <script>
 export default {
   name: 'AlertVue',
-  props: ['type', 'message'],
-  data () {
-    return {
 
+  props: {
+    type: {
+      type: String,
+      required: false,
+      validator: (value) => {
+        return [
+          'error',
+          'success',
+          'warning'
+        ].includes(value)
+      }
+    },
+
+    message: {
+      type: String,
+      required: true
     }
   }
 }

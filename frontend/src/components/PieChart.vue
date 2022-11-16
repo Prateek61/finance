@@ -16,13 +16,19 @@ ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
 
 export default {
   name: 'PieChartVue',
-  components: { Pie },
+
+  components: {
+    Pie
+  },
+
   data () {
     return {
       loaded: false,
       chartData: null,
+
       chartOptions: {
         responsive: true,
+
         plugins: {
           title: {
             display: true,
@@ -32,6 +38,7 @@ export default {
       }
     }
   },
+
   async mounted () {
     const response = await axios.get('/piechart')
     const dataList = []

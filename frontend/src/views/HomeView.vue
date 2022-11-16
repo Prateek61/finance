@@ -3,10 +3,10 @@
     <v-container v-if="user">
       <v-row wrap>
         <v-col cols="12" lg="6">
-          <BarGraphVue />
+          <bar-graph></bar-graph>
         </v-col>
         <v-col cols="12" lg="6">
-          <PieChartVue />
+          <pie-chart></pie-chart>
         </v-col>
       </v-row>
     </v-container>
@@ -15,23 +15,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import BarGraphVue from '@/components/BarGraphVue.vue'
-import PieChartVue from '@/components/PieChartVue.vue'
+import BarGraph from '@/components/BarGraph.vue'
+import PieChart from '@/components/PieChart.vue'
 
 export default {
   name: 'HomeView',
-  data () {
-    return {
-    }
+
+  components: {
+    BarGraph,
+    PieChart
   },
-  methods: {
-  },
+
   computed: {
     ...mapGetters(['user'])
-  },
-  components: {
-    BarGraphVue,
-    PieChartVue
   }
 }
 </script>

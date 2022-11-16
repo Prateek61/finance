@@ -6,9 +6,9 @@
 
       <v-spacer />
       <div class="center-add">
-        <AddVue />
+        <AddTransaction />
       </div>
-      <v-btn @click="handleLogout">
+      <v-btn @click="baseNavLogout">
         <span class="font-weight-light">Sign Out</span>
       </v-btn>
     </v-toolbar>
@@ -16,20 +16,17 @@
 </template>
 
 <script>
-import AddVue from '@/components/AddVue.vue'
+import AddTransaction from '@/components/AddTransaction.vue'
 
 export default {
   name: 'NavVue',
-  data () {
-    return {
 
-    }
-  },
   components: {
-    AddVue
+    AddTransaction
   },
+
   methods: {
-    handleLogout () {
+    baseNavLogout () {
       this.$store.dispatch('logout')
       this.$router.push('/auth')
     }

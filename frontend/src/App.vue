@@ -1,28 +1,22 @@
 <template>
   <v-app class="bg-grey-lighten-4">
-    <nav-vue v-if="notAuth"/>
-    <v-main v-bind:class="{'py-5': user}">
-      <router-view/>
+    <base-nav v-if="notAuth"></base-nav>
+    <v-main :class="{'py-5': user}">
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios'
-import NavVue from '@/components/NavVue.vue'
+import BaseNav from '@/components/BaseNav.vue'
 import { mapGetters } from 'vuex'
+
 export default {
   components: {
-    NavVue
+    BaseNav
   },
-  data () {
-    return {
-    }
-  },
-  async created () {
-    const response = await axios.get('/getuser')
-    this.$store.dispatch('user', response.data.user)
-  },
+
   computed: {
     ...mapGetters(['user']),
     notAuth () {
@@ -32,6 +26,11 @@ export default {
         return true
       }
     }
+  },
+
+  async created () {
+    const response = await axios.get('/getuser')
+    this.$store.dispatch('user', response.data.user)
   }
 }
 </script>

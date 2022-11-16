@@ -28,7 +28,19 @@
 <script>
 export default {
   name: 'HistoryRowVue',
-  props: ['data', 'style'],
+
+  props: {
+    data: {
+      type: Object,
+      required: true
+    },
+
+    style: {
+      type: Object,
+      required: true
+    }
+  },
+
   computed: {
     cssVars () {
       return {

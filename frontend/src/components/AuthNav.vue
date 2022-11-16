@@ -13,6 +13,17 @@
 <script>
 export default {
   name: 'AuthNavVue',
-  props: ['clickedRegister', 'clickedLogin']
+
+  props: {
+    clickedRegister: {
+      type: Function,
+      required: true
+    },
+
+    clickedLogin: {
+      type: Function,
+      required: true
+    }
+  }
 }
 </script>
