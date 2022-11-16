@@ -1,7 +1,7 @@
 <template>
   <v-container class="my-5">
     <h4>Expenditure History</h4>
-    <HistoryRowVue v-for="(item, index) in history" :key="index" :data="item" :style="icon[item.category]" />
+    <HistoryRowVue v-for="(item, index) in history.slice().reverse()" :key="index" :data="item" :style="icon[item.category]" />
   </v-container>
 </template>
 

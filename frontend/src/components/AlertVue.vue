@@ -24,4 +24,9 @@ export default {
   text-align: center;
   color: #4CAF50;
 }
+
+.warning{
+  text-align: center;
+  color: #FFC107;
+}
 </style>

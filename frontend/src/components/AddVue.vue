@@ -11,7 +11,6 @@
         </v-card-title>
 
         <v-card-text>
-          <h4 v-if="errorMessage">{{errorMessage}}</h4>
           <v-form class="px3" ref="form">
             <v-select :items="categories" label="Category" :rules="rules.category" v-model="selected"></v-select>
             <v-text-field label="Amount" :rules="rules.amount" v-model.number="amount"></v-text-field>
@@ -70,6 +69,9 @@ export default {
         const response = await axios.post('/add', data)
         if (response.data.status === 'success') {
           this.alert = { type: 'success', message: response.data.message }
+          this.selected = null
+          this.amount = null
+          this.description = null
         } else if (response.data.status === 'fail') {
           this.alert = { type: 'error', message: response.data.message }
         }
