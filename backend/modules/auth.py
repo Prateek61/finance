@@ -49,10 +49,6 @@ def users():
         output.append(user_data)
     return jsonify({'users': output})
 
-@auth.route('/home', methods=['GET'])
-@token_required
-def home(current_user):
-    return current_user.username
 
 @auth.route('/register', methods=['POST'])
 def register():
@@ -67,6 +63,7 @@ def register():
         db.session.rollback()
         return jsonify({'message': 'Username already taken', 'register_status': 'fail'})
     return jsonify({'message': 'user created', 'register_status': 'success'})
+
 
 @auth.route('/login')
 def login():

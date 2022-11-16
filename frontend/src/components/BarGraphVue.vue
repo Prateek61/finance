@@ -1,8 +1,8 @@
 <template>
     <Bar
+    v-if="loaded"
+      :chart-options="chartOptions"
       :chart-data="chartData"
-      :width=50
-      :height=25
     />
 </template>
 
@@ -18,26 +18,49 @@ export default {
   components: { Bar },
   data () {
     return {
+      loaded: false,
       chartData: {
         labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        datasets: [{ label: 'Expenditure', data: [] }]
+        datasets: [
+          {
+            label: 'Expenditure',
+            data: [],
+            backgroundColor: [
+              '#F44336',
+              '#E91E63',
+              '#9C27B0',
+              '#3F51B5',
+              '#00BCD4',
+              '#8BC34A',
+              '#FFC107'
+            ]
+          }
+        ]
       },
       chartOptions: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Expenditure in every day of week'
+          },
+          legend: {
+            display: false
+          }
+        }
       }
     }
   },
-  async created () {
+  async mounted () {
     const response = await axios.get('/bargraph')
     const list = []
     const data = response.data.chartData
-    console.log(data)
 
     this.chartData.labels.forEach((item, index) => {
       list.push(data[item])
     })
-    console.log(list)
     this.chartData.datasets[0].data = list
+    this.loaded = true
   }
 }
 </script>

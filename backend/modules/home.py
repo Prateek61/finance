@@ -7,6 +7,7 @@ from .helper import history_to_dict, get_week
 
 home = Blueprint('home', __name__)
 
+
 @home.route('/history')
 @token_required
 def history(current_user: User):
@@ -54,10 +55,12 @@ def add_to_history(current_user: User):
 def get_category(current_user: User):
     return jsonify({'categories': categories})
 
+
 @home.route('/getuser', methods=['GET'])
 @token_required
 def get_user(current_user: User):
     return jsonify({'user': {'username': current_user.username, 'public_id': current_user.public_id}})
+
 
 @home.route('/bargraph')
 @token_required
@@ -76,4 +79,19 @@ def bargraph(current_user: User):
     for item in data:
         chart_data[get_week(item.date_time)] += item.amount
 
+    return jsonify({'chartData': chart_data})
+
+
+@home.route('/piechart')
+@token_required
+def piechart(current_user: User):
+    data = History.query.filter_by(user_id=current_user.id)
+    chart_data = dict()
+
+    for item in data:
+        if item.category in chart_data:
+            chart_data[item.category] += item.amount
+        else:
+            chart_data[item.category] = item.amount
+    
     return jsonify({'chartData': chart_data})
