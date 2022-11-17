@@ -8,6 +8,7 @@
 
 <script>
 import axios from 'axios'
+import materialColors from '@/assets/material-colors.json'
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
@@ -24,26 +25,10 @@ export default {
     return {
       loaded: false,
 
-      chartData: {
-        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      monthName: null,
+      total: null,
 
-        datasets: [
-          {
-            label: 'Expenditure',
-            data: [],
-
-            backgroundColor: [
-              '#F44336',
-              '#E91E63',
-              '#9C27B0',
-              '#3F51B5',
-              '#00BCD4',
-              '#8BC34A',
-              '#FFC107'
-            ]
-          }
-        ]
-      },
+      chartData: null,
 
       chartOptions: {
         responsive: true,
@@ -51,7 +36,7 @@ export default {
         plugins: {
           title: {
             display: true,
-            text: 'Expenditure in every day of week'
+            text: ''
           },
 
           legend: {
@@ -64,14 +49,43 @@ export default {
 
   async mounted () {
     const response = await axios.get('/bargraph')
-    const list = []
-    const data = response.data.chartData
+    const data = response.data
+    const label = []
+    const colorList = []
 
-    this.chartData.labels.forEach((item, index) => {
-      list.push(data[item])
-    })
-    this.chartData.datasets[0].data = list
+    for (let i = 0; i <= data.chartData.length; i++) {
+      label.push(i.toString())
+      colorList.push(pickRandomColor())
+    }
+
+    this.monthName = data.monthName
+    this.total = data.total
+    this.chartData = {
+      labels: label,
+      datasets: [
+        {
+          data: data.chartData,
+          backgroundColor: colorList
+        }
+      ]
+    }
+    this.chartOptions.plugins.title.text = `Expenditure in ${this.monthName}: ${this.total}`
     this.loaded = true
   }
 }
+
+function pickRandomColor () {
+  return pickRandomProperty(pickRandomProperty(materialColors))
+}
+
+function pickRandomProperty (obj) {
+  const keys = Object.keys(obj)
+  const randKey = keys[keys.length * Math.random() << 0]
+  if (['50', '100', '200', '300', 'grey', 'bluegrey'].includes(randKey)) {
+    return pickRandomProperty(obj)
+  } else {
+    return obj[randKey]
+  }
+}
+
 </script>

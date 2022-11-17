@@ -24,6 +24,7 @@ export default {
   data () {
     return {
       loaded: false,
+      total: null,
       chartData: null,
 
       chartOptions: {
@@ -61,6 +62,8 @@ export default {
         }
       ]
     }
+    this.total = response.data.total
+    this.chartOptions.plugins.title.text += `   [Total: ${this.total}]`
     this.loaded = true
   }
 }

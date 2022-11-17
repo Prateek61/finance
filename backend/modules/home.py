@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from app import db
 from .models import User, History
 from .auth import token_required
-from .helper import history_to_dict, get_week
+from .helper import history_to_dict, day_of_curr_month, curr_month_len, curr_month_name
 
 home = Blueprint('home', __name__)
 
@@ -66,20 +66,15 @@ def get_user(current_user: User):
 @token_required
 def bargraph(current_user: User):
     data = History.query.filter_by(user_id=current_user.id)
-    chart_data = {
-        'Sunday': 0,
-        'Monday': 0,
-        'Tuesday': 0,
-        'Wednesday': 0,
-        'Thursday': 0,
-        'Friday': 0,
-        'Saturday': 0
-    }
-
+    chart_data = [0] * curr_month_len()
+    total = 0
     for item in data:
-        chart_data[get_week(item.date_time)] += item.amount
+        month = day_of_curr_month(item.date_time)
+        if (month):
+            chart_data[month] += item.amount
+            total += item.amount
 
-    return jsonify({'chartData': chart_data})
+    return jsonify({'chartData': chart_data, 'monthName': curr_month_name(), 'total': total})
 
 
 @home.route('/piechart')
@@ -87,11 +82,12 @@ def bargraph(current_user: User):
 def piechart(current_user: User):
     data = History.query.filter_by(user_id=current_user.id)
     chart_data = dict()
-
+    total = 0
     for item in data:
+        total += item.amount
         if item.category in chart_data:
             chart_data[item.category] += item.amount
         else:
             chart_data[item.category] = item.amount
     
-    return jsonify({'chartData': chart_data})
+    return jsonify({'chartData': chart_data, 'total': total})
