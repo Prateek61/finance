@@ -1,6 +1,6 @@
 <template>
     <Bar
-    v-if="loaded"
+      v-if="loaded"
       :chart-options="chartOptions"
       :chart-data="chartData"
     />

@@ -27,14 +27,21 @@
 
 <script>
 export default {
-  name: 'HistoryRowVue',
+  name: 'HistoryRow',
 
   props: {
+    /**
+     * Object for data for history row
+     * must include a amount, datetime, description
+     */
     data: {
       type: Object,
       required: true
     },
-
+    /**
+     * Object for the styling in history row
+     * must include a icon, color
+     */
     style: {
       type: Object,
       required: true

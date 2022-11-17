@@ -11,13 +11,8 @@ const routes = [
   },
   {
     path: '/',
-    name: 'HomeView',
+    name: 'Home',
     component: HomeView
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import('@/components/RegisterForm.vue')
   },
   {
     path: '/history',
@@ -29,6 +24,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = `Finance - ${to.name}`
+  next()
 })
 
 export default router

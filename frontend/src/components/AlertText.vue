@@ -4,9 +4,13 @@
 
 <script>
 export default {
-  name: 'AlertVue',
+  name: 'AlertText',
 
   props: {
+    /**
+     * The type of alert
+     * @values error, success, warning
+     */
     type: {
       type: String,
       required: false,
@@ -18,7 +22,9 @@ export default {
         ].includes(value)
       }
     },
-
+    /**
+     * The message in the alert
+     */
     message: {
       type: String,
       required: true

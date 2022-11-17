@@ -12,11 +12,34 @@
 
         <v-card-text>
           <v-form class="px3" ref="form">
-            <v-select :items="categories" label="Category" :rules="rules.category" v-model="selected"></v-select>
-            <v-text-field label="Amount" :rules="rules.amount" v-model.number="amount"></v-text-field>
-            <v-text-field label="Description" :rules="rules.description" v-model="description"></v-text-field>
-            <AlertText :type="alert.type" :message="alert.message" v-if="alert.message" />
-            <v-btn class="align-center" color="primary" @click="handleSubmit">Add</v-btn>
+            <v-select
+              :items="categories"
+              label="Category"
+              :rules="rules.category"
+              v-model="selected"
+            ></v-select>
+
+            <v-text-field
+              label="Amount"
+              :rules="rules.amount"
+              v-model.number="amount"
+            ></v-text-field>
+
+            <v-text-field
+              label="Description"
+              :rules="rules.description"
+              v-model="description"
+            ></v-text-field>
+
+            <alert-text
+              :type="alert.type"
+              :message="alert.message"
+              v-if="alert.message"
+            ></alert-text>
+
+            <v-btn class="align-center" color="primary"
+              @click="addTransactionSubmit"
+            >Add</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -43,7 +66,7 @@ export default {
 
       selected: null,
       amount: null,
-      description: '',
+      description: null,
 
       alert: {
         type: null,
@@ -74,7 +97,7 @@ export default {
   },
 
   methods: {
-    async handleSubmit () {
+    async addTransactionSubmit () {
       const { valid } = await this.$refs.form.validate()
       if (valid) {
         const data = {

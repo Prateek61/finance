@@ -4,9 +4,9 @@
       <v-btn selected to="/">Home</v-btn>
       <v-btn to="/history">History</v-btn>
 
-      <v-spacer />
+      <v-spacer></v-spacer>
       <div class="center-add">
-        <AddTransaction />
+        <add-transaction></add-transaction>
       </div>
       <v-btn @click="baseNavLogout">
         <span class="font-weight-light">Sign Out</span>
@@ -19,7 +19,7 @@
 import AddTransaction from '@/components/AddTransaction.vue'
 
 export default {
-  name: 'NavVue',
+  name: 'BaseNav',
 
   components: {
     AddTransaction

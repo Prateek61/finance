@@ -15,7 +15,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale } f
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
 
 export default {
-  name: 'PieChartVue',
+  name: 'PieChart',
 
   components: {
     Pie

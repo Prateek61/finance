@@ -1,9 +1,25 @@
 <template>
   <v-form class="px-3" ref="form">
     <h3>Login</h3>
-    <v-text-field v-model="username" :rules="rules.usernameRequired" label="Username"></v-text-field>
-    <v-text-field :type="show1 ? 'text' : 'password'" :rules="rules.passwordRequired" v-model="password" label="Password"></v-text-field>
-    <AlertText :type="alert.type" :message="alert.message" v-if="alert.message" />
+    <v-text-field
+      v-model="username"
+      :rules="rules.usernameRequired"
+      label="Username"
+    ></v-text-field>
+
+    <v-text-field
+      :type="show1 ? 'text' : 'password'"
+      :rules="rules.passwordRequired"
+      v-model="password"
+      label="Password"
+    ></v-text-field>
+
+    <alert-text
+      :type="alert.type"
+      :message="alert.message"
+      v-if="alert.message"
+    ></alert-text>
+
     <v-btn class="my-2" @click="loginFormSubmit">Log In</v-btn>
   </v-form>
 </template>
@@ -13,7 +29,7 @@ import axios from 'axios'
 import AlertText from './AlertText.vue'
 
 export default {
-  name: 'LoginFormVue',
+  name: 'LoginForm',
 
   components: {
     AlertText

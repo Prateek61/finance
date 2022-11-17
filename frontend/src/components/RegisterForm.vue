@@ -1,10 +1,32 @@
 <template>
   <v-form ref="form">
     <h3>Register</h3>
-    <v-text-field v-model="username" :rules="[rules.required]" label="username"></v-text-field>
-    <v-text-field :type="show1 ? 'text' : 'password'" :rules="[rules.required]" v-model="password" label="password"></v-text-field>
-    <v-text-field :type="show1 ? 'text' : 'password'" :rules="[rules.required, rules.confirmation]" v-model="passwordConfirmation" label="Confirm Password"></v-text-field>
-    <AlertText :type="alert.type" :message="alert.message" v-if="alert.message" />
+    <v-text-field
+      v-model="username"
+      :rules="[rules.required]"
+      label="username"
+    ></v-text-field>
+
+    <v-text-field
+      :type="show1 ? 'text' : 'password'"
+      :rules="[rules.required]"
+      v-model="password"
+      label="password"
+    ></v-text-field>
+
+    <v-text-field
+      :type="show1 ? 'text' : 'password'"
+      :rules="[rules.required, rules.confirmation]"
+      v-model="passwordConfirmation"
+      label="Confirm Password"
+    ></v-text-field>
+
+    <alert-text
+      :type="alert.type"
+      :message="alert.message"
+      v-if="alert.message"
+    ></alert-text>
+
     <v-btn class="my-2" @click="registerFormSubmit">Register</v-btn>
   </v-form>
 </template>
@@ -18,7 +40,7 @@ import axios from 'axios'
 import AlertText from './AlertText.vue'
 
 export default {
-  name: 'RegisterVue',
+  name: 'RegisterForm',
 
   components: {
     AlertText
