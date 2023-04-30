@@ -53,8 +53,8 @@ export default {
     const label = []
     const colorList = []
 
-    for (let i = 0; i <= data.chartData.length; i++) {
-      label.push(i.toString())
+    for (let i = 1; i <= data.chartData.length; i++) {
+      label.push((i - 1).toString())
       colorList.push(pickRandomColor())
     }
 

@@ -66,13 +66,12 @@ def get_user(current_user: User):
 @token_required
 def bargraph(current_user: User):
     data = History.query.filter_by(user_id=current_user.id)
-    chart_data = [0] * (curr_month_len() + 1)
-    print(chart_data)
+    chart_data = [0] * curr_month_len()
     total = 0
     for item in data:
         month = day_of_curr_month(item.date_time)
         if (month):
-            chart_data[month] += item.amount
+            chart_data[month - 1] += item.amount
             total += item.amount
 
     return jsonify({'chartData': chart_data, 'monthName': curr_month_name(), 'total': total})
