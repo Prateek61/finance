@@ -11,7 +11,7 @@ pip intall -r requirements.txt
 ```python
 from app import app, db
 with app.app_context():
-    db.createall()
+    db.create_all()
 ```
 
 ## Run server locally in debug
