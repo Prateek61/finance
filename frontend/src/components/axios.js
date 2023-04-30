@@ -7,7 +7,6 @@ axios.defaults.baseURL = 'http://localhost:5000'
 if (process.env.VUE_APP_API_URL) {
   axios.defaults.baseURL = process.env.VUE_APP_API_URL
 }
-console.log(process.env)
 axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token')
 
 axios.interceptors.response.use((response) => {
