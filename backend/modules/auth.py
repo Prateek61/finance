@@ -54,7 +54,7 @@ def users():
 def register():
     data = request.get_json()
 
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'])
     new_user = User(public_id=str(uuid.uuid4()), username=data['username'], password=hashed_password)
     try:
         db.session.add(new_user)
