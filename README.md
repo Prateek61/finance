@@ -1,7 +1,5 @@
 # Finance Tracker
 
-Video Demo: <https://youtu.be/lcYxGyE4bUM>
-
 ## About
 
 Finance is a web application to track and monitor your expenditure. You can add financial transactions and the app shows visual representation of your expenditure history.
